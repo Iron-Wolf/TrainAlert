@@ -22,11 +22,13 @@ public class Main {
 
 
         try {
+            System.out.println("init bot...");
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
 
             try {
                 // register long polling bot
                 telegramBotsApi.registerBot(new TrainAlertHandler());
+                System.out.println("Bot started");
             } catch (TelegramApiException e) {
                 BotLogger.error(LOGTAG, e);
             }

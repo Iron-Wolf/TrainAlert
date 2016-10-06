@@ -25,6 +25,7 @@ hs_err_pid*
 
 ### logs files
 *.log
+*.log.lck
 
 ### Certs
 *.jks
@@ -42,3 +43,4 @@ copyright/
 #File System specific files
 .DS_STORE
 README.md
+.travis.yml

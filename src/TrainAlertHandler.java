@@ -28,20 +28,31 @@ public class TrainAlertHandler extends TelegramLongPollingBot {
         //check if the update has a message
         if(update.hasMessage()){
             Message message = update.getMessage();
+            SendMessage sendMessageRequest = new SendMessage();
 
             //check if the message has text. it could contain a location ( message.hasLocation() )
             if(message.hasText()){
                 //create an object that contains the information to send back the message
-                SendMessage sendMessageRequest = new SendMessage();
                 sendMessageRequest.setChatId(message.getChatId().toString()); //who should get the message
-                sendMessageRequest.setText("Message : " + message.getText() + " \n Emoji : "+Emoji.AIRPLANE);
+                sendMessageRequest.setText("Message : " + message.getText());
+            }
+            else
+            {
+                sendMessageRequest.setChatId(message.getChatId().toString());
+                sendMessageRequest.setText(getHelpMessage());
+            }
 
-                try {
-                    sendMessage(sendMessageRequest); // send the message
-                } catch (TelegramApiException e) {
-                    //do some error handling
-                }
+            try {
+                sendMessage(sendMessageRequest); // send the message
+            } catch (TelegramApiException e) {
+                //do some error handling
             }
         }
     }
+
+
+    private static String getHelpMessage() {
+        return "some custom help message";
+    }
+
 }
