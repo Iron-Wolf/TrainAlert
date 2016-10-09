@@ -1,16 +1,28 @@
+import Command.EveningCommand;
+import Command.HelpCommand;
+import Command.MorningCommand;
+import Command.StartCommand;
+import Ressources.BotConfig;
+import org.telegram.telegrambots.bots.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.logging.BotLogger;
 
 /**
  * Main class containing bot behavior
  */
-public class TrainAlertHandler extends TelegramLongPollingBot {
+public class TrainAlertHandler extends TelegramLongPollingCommandBot {
+
+    public static final String LOGTAG = "HANDLER";
 
     public TrainAlertHandler() {
-
+        register(new MorningCommand());
+        register(new EveningCommand());
+        register(new StartCommand());
+        HelpCommand helpCommand = new HelpCommand(this);
+        register(helpCommand);
     }
 
     @Override
@@ -24,35 +36,26 @@ public class TrainAlertHandler extends TelegramLongPollingBot {
     }
 
     @Override
-    public void onUpdateReceived(Update update) {
+    public void processNonCommandUpdate(Update update) {
         //check if the update has a message
-        if(update.hasMessage()){
+        if (update.hasMessage()) {
             Message message = update.getMessage();
-            SendMessage sendMessageRequest = new SendMessage();
 
-            //check if the message has text. it could contain a location ( message.hasLocation() )
-            if(message.hasText()){
+            //check if the message has text
+            if (message.hasText()) {
                 //create an object that contains the information to send back the message
-                sendMessageRequest.setChatId(message.getChatId().toString()); //who should get the message
-                sendMessageRequest.setText("Message : " + message.getText());
-            }
-            else
-            {
-                sendMessageRequest.setChatId(message.getChatId().toString());
-                sendMessageRequest.setText(getHelpMessage());
-            }
+                SendMessage echoMessage = new SendMessage();
+                echoMessage.setChatId(message.getChatId().toString()); //who should get the message
+                echoMessage.setText("Commande inconnue : " + message.getText());
 
-            try {
-                sendMessage(sendMessageRequest); // send the message
-            } catch (TelegramApiException e) {
-                //do some error handling
+                try {
+                    sendMessage(echoMessage);
+                } catch (TelegramApiException e) {
+                    BotLogger.error(LOGTAG, e);
+                }
             }
         }
     }
 
-
-    private static String getHelpMessage() {
-        return "some custom help message";
-    }
 
 }

@@ -3,7 +3,7 @@ import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.logging.BotLogger;
 import org.telegram.telegrambots.logging.BotsFileHandler;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 
@@ -36,6 +36,5 @@ public class Main {
         }catch (Exception e) {
             BotLogger.error(LOGTAG, e);
         }
-
     }
 }
