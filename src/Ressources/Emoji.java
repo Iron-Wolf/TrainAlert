@@ -5,6 +5,8 @@ package Ressources;
  * @version 1.0
  * @brief Enumerate of emojis with unicode chars
  * @date 02 of July of 2015
+ *
+ * Add Emoji with this list : http://www.fileformat.info/info/emoji/list.htm
  */
 public enum Emoji {
 
@@ -164,7 +166,8 @@ public enum Emoji {
     LARGE_ORANGE_DIAMOND('\uD83D', '\uDD36'),
     HUNDRED_POINTS_SYMBOL('\uD83D', '\uDCAF'),
     ROUND_PUSHPIN('\uD83D', '\uDCCD'),
-    WAVING_HAND_SIGN('\uD83D', '\uDC4B');
+    WAVING_HAND_SIGN('\uD83D', '\uDC4B'),
+    WARNING_SIGN(null, '\u26A0');
 
     Character firstChar;
     Character secondChar;

@@ -1,7 +1,4 @@
-import Command.EveningCommand;
-import Command.HelpCommand;
-import Command.MorningCommand;
-import Command.StartCommand;
+import Command.*;
 import Ressources.BotConfig;
 import org.telegram.telegrambots.bots.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
@@ -21,6 +18,7 @@ public class TrainAlertHandler extends TelegramLongPollingCommandBot {
         register(new MorningCommand());
         register(new EveningCommand());
         register(new StartCommand());
+        register(new SubwayCommand());
         HelpCommand helpCommand = new HelpCommand(this);
         register(helpCommand);
     }

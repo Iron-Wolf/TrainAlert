@@ -13,10 +13,10 @@ public class BotConfig {
     public static final String SNCF_PASSWD = "<passwd token>";
 
     // API's url (will change behavior later...)
-    public static final String SNCF_URL_CP = "http://api.transilien.com/gare/87381079/depart/87384008/";
-    public static final String SNCF_URL_PC = "http://api.transilien.com/gare/87384008/depart/87381079/";
+    public static final String SNCF_URL = "http://api.transilien.com/gare/%s/depart/%s/";
+    public static final Integer COLOMBES = 87381079;
+    public static final Integer ST_LAZARD = 87384008;
 
-    public static final String[] RATP_URLS = {"http://api-ratp.pierre-grimaud.fr/v2/traffic/metros/3?format=xml",
-                                            "http://api-ratp.pierre-grimaud.fr/v2/traffic/metros/4?format=xml",
-                                            "http://api-ratp.pierre-grimaud.fr/v2/traffic/metros/12?format=xml"};
+    public static final String RATP_URLS = "http://api-ratp.pierre-grimaud.fr/v2/traffic/metros/%s?format=xml";
+    public static final Integer[] SUBWAY_LIST = {3, 4, 12};
 }
