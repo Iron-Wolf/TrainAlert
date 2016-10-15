@@ -1,4 +1,5 @@
 # TrainAlert
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5bdcb2284d4499da81920360f677d6b)](https://www.codacy.com/app/Iron-Wolf/TrainAlert?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Iron-Wolf/TrainAlert&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/Iron-Wolf/TrainAlert.svg?branch=master)](https://travis-ci.org/Iron-Wolf/TrainAlert)
 [![Dependencies](https://img.shields.io/librariesio/github/Iron-Wolf/TrainAlert.svg)](https://libraries.io/github/Iron-Wolf/TrainAlert)
 
