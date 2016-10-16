@@ -24,7 +24,6 @@ public class APIWorker {
 
     private APIWorker(){}
 
-
     public static APIWorker getInstance() {
         return INSTANCE;
     }
@@ -33,7 +32,7 @@ public class APIWorker {
      * Get the stream data from a given URL
      * @param urlString URL of the remote ressource
      * @return {@link java.io.InputStream InputStream} of the remote ressource
-     * @throws IOException
+     * @throws IOException If problem occur on connection
      */
     public InputStream getXMLData(String urlString) throws IOException{
         return getData(urlString, null, null);

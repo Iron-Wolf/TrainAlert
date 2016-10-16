@@ -8,6 +8,7 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.bots.commands.ICommandRegistry;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
+import ressources.ReplyMessage;
 
 /**
  * List all command
@@ -25,21 +26,18 @@ public class HelpCommand extends BotCommand {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
-        StringBuilder helpMessageBuilder = new StringBuilder("<b>Commandes dipsonibles</b>\n");
+        StringBuilder messageBuilder = new StringBuilder("<b>Commandes disponibles</b>\n");
 
         for (BotCommand botCommand : commandRegistry.getRegisteredCommands()) {
             // the HELP command is removed from the list
             if (!botCommand.toString().contains("/help"))
-                helpMessageBuilder.append(botCommand.toString()).append("\n");
+                messageBuilder.append(botCommand.toString()).append("\n");
         }
 
-        SendMessage helpMessage = new SendMessage();
-        helpMessage.setChatId(chat.getId().toString());
-        helpMessage.enableHtml(true);
-        helpMessage.setText(helpMessageBuilder.toString());
+        SendMessage answer = ReplyMessage.getSendMessage(chat.getId(), messageBuilder.toString());
 
         try {
-            absSender.sendMessage(helpMessage);
+            absSender.sendMessage(answer);
         } catch (TelegramApiException e) {
             BotLogger.error(LOGTAG, e);
         }

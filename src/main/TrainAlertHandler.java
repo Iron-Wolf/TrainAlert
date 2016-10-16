@@ -8,6 +8,7 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.logging.BotLogger;
+import ressources.ReplyMessage;
 
 /**
  * Main class containing bot behavior
@@ -43,19 +44,16 @@ public class TrainAlertHandler extends TelegramLongPollingCommandBot {
 
             //check if the message has text
             if (message.hasText()) {
-                //create an object that contains the information to send back the message
-                SendMessage echoMessage = new SendMessage();
-                echoMessage.setChatId(message.getChatId().toString()); //who should get the message
-                echoMessage.setText("Commande inconnue : " + message.getText());
+                SendMessage answer = ReplyMessage
+                        .getSendMessage(message.getChatId(), "Commande inconnue : " + message.getText());
 
                 try {
-                    sendMessage(echoMessage);
+                    sendMessage(answer);
                 } catch (TelegramApiException e) {
                     BotLogger.error(LOGTAG, e);
                 }
             }
         }
     }
-
 
 }

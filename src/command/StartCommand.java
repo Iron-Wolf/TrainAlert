@@ -7,6 +7,7 @@ import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
+import ressources.ReplyMessage;
 
 /**
  * Basic startup command
@@ -21,10 +22,8 @@ public class StartCommand extends BotCommand {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
-        SendMessage answer = new SendMessage();
-        answer.setChatId(chat.getId().toString());
-        answer.enableHtml(true);
-        answer.setText("Utilisez <b>/help</b> pour la liste des commandes");
+        SendMessage answer = ReplyMessage
+                .getSendMessage(chat.getId(), "Choisisez une option", ReplyMessage.getMainMenuKeyboard());
 
         try {
             absSender.sendMessage(answer);
@@ -32,4 +31,5 @@ public class StartCommand extends BotCommand {
             BotLogger.error(LOGTAG, e);
         }
     }
+
 }

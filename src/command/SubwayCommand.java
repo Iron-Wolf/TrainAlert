@@ -10,6 +10,7 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 import org.xml.sax.SAXException;
+import ressources.ReplyMessage;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -57,12 +58,8 @@ public class SubwayCommand extends BotCommand{
             messageBuilder.append(message);
 
             // send message
-            SendMessage answer = new SendMessage();
-            answer.setChatId(chat.getId().toString());
-            answer.enableHtml(true);
-            answer.setText(messageBuilder.toString());
+            SendMessage answer = ReplyMessage.getSendMessage(chat.getId(), messageBuilder.toString());
             absSender.sendMessage(answer);
-
 
         } catch (ParserConfigurationException e) {
             BotLogger.error(LOGTAG, e);
