@@ -1,4 +1,4 @@
-package Command;
+package command;
 
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Chat;
@@ -9,21 +9,22 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
 /**
- * Command used for evening departure
+ * Basic startup command
  */
-public class EveningCommand extends BotCommand {
+public class StartCommand extends BotCommand {
 
-    private static final String LOGTAG = "EVENING-COMMAND";
+    private static final String LOGTAG = "START-COMMAND";
 
-    public EveningCommand () {
-        super("Soir", "Horaires Paris > Colombes");
+    public StartCommand() {
+        super("start", "Commence la conversation");
     }
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());
-        answer.setText("test reponse commande soir");
+        answer.enableHtml(true);
+        answer.setText("Utilisez <b>/help</b> pour la liste des commandes");
 
         try {
             absSender.sendMessage(answer);

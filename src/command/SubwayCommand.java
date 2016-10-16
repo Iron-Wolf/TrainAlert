@@ -1,7 +1,7 @@
-package Command;
+package command;
 
-import Ressources.APIWorker;
-import Ressources.BotConfig;
+import ressources.APIWorker;
+import ressources.BotConfig;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.User;

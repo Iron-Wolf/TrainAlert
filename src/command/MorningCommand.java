@@ -1,8 +1,8 @@
-package Command;
+package command;
 
-import Ressources.APIWorker;
-import Ressources.BotConfig;
-import Ressources.Emoji;
+import ressources.APIWorker;
+import ressources.BotConfig;
+import ressources.Emoji;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.User;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Command used for morning departure
+ * command used for morning departure
  */
 public class MorningCommand extends BotCommand {
 
@@ -29,13 +29,13 @@ public class MorningCommand extends BotCommand {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
-        String userName = chat.getUserName();
+        /*String userName = chat.getUserName();
         if (userName == null || userName.isEmpty()) {
             userName = user.getFirstName() + " " + user.getLastName();
-        }
+        }*/
 
         StringBuilder messageBuilder = new StringBuilder("Etat du réseau : ");
-        String message = "";
+        String message;
 
         try {
             // SNCF transilien

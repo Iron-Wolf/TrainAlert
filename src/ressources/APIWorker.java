@@ -1,4 +1,4 @@
-package Ressources;
+package ressources;
 
 import org.apache.commons.codec.binary.Base64;
 import org.w3c.dom.Document;
@@ -20,9 +20,10 @@ import java.net.URL;
  */
 public class APIWorker {
 
+    private static APIWorker INSTANCE = new APIWorker();
+
     private APIWorker(){}
 
-    private static APIWorker INSTANCE = new APIWorker();
 
     public static APIWorker getInstance() {
         return INSTANCE;
@@ -44,19 +45,19 @@ public class APIWorker {
      * @param userName login
      * @param password password
      * @return {@link java.io.InputStream InputStream} of the remote ressource
-     * @throws IOException
+     * @throws IOException If problem occur on connection
      */
     public InputStream getXMLData(String urlString, String userName, String password) throws IOException{
         return getData(urlString, userName, password);
     }
 
     /**
-     * Main method to download XML data
+     * main.Main method to download XML data
      * @param urlString Remote ressource
      * @param userName Needed for authentication
      * @param password Needed for authentication
      * @return {@link java.io.InputStream InputStream} of the remote ressource
-     * @throws IOException
+     * @throws IOException If problem occur on connection
      */
     private InputStream getData(String urlString, String userName, String password) throws IOException {
         URL url = new URL (urlString);
@@ -84,9 +85,9 @@ public class APIWorker {
      * The InputStream must come from the SNCF real time API.
      * @param content {@link java.io.InputStream InputStream} containing XML data
      * @return The String containing message
-     * @throws ParserConfigurationException
-     * @throws SAXException
-     * @throws IOException
+     * @throws ParserConfigurationException If XML is malformed
+     * @throws SAXException If XML is malformed
+     * @throws IOException If problem occur on connection
      */
     public String getMessageJLine(InputStream content) throws ParserConfigurationException,SAXException,IOException {
         String message = "";
@@ -100,7 +101,6 @@ public class APIWorker {
         Element element = doc.getDocumentElement();
         NodeList nodes = element.getChildNodes();
 
-
         for (int i = 0; i < nodes.getLength(); i++) {
             // loop only on TRAIN node
             if (nodes.item(i).getNodeName().equals("train")) {
@@ -112,7 +112,7 @@ public class APIWorker {
                  8 : etat (null if train OK)
                 */
                 try {
-                    String etatNode = nodes.item(i).getChildNodes().item(8).getNodeName();
+                    //String etatNode = nodes.item(i).getChildNodes().item(8).getNodeName();
                     String etatText = nodes.item(i).getChildNodes().item(8).getTextContent();
                     String dateText = nodes.item(i).getChildNodes().item(0).getTextContent();
                     message += "Ligne J (" + dateText + ") : " + etatText + "\n";
@@ -129,9 +129,9 @@ public class APIWorker {
      * @param allInfo <b>true</b> return the message.
      *                <b>false</b> return message if subway has trouble
      * @return Message to the user
-     * @throws ParserConfigurationException
-     * @throws SAXException
-     * @throws IOException
+     * @throws ParserConfigurationException If XML is malformed
+     * @throws SAXException If XML is malformed
+     * @throws IOException If problem occur on connection
      */
     public String getMessageSubway(InputStream content, boolean allInfo) throws ParserConfigurationException,SAXException,IOException {
         String message = "";
@@ -146,7 +146,6 @@ public class APIWorker {
         NodeList nodes = element.getChildNodes();
 
         for (int i = 0; i < nodes.getLength(); i++) {
-            // get result if SLUG is not normal
             if (nodes.item(i).getNodeName().equals("response")) {
                 /*
                  0 : line
@@ -158,9 +157,11 @@ public class APIWorker {
                     String lineNode = nodes.item(i).getChildNodes().item(0).getTextContent();
                     String slugText = nodes.item(i).getChildNodes().item(1).getTextContent();
                     String messageText = nodes.item(i).getChildNodes().item(3).getTextContent();
+                    // get the message
                     if (allInfo) {
                         message += "metro (" + lineNode + ") : " + messageText + "\n";
                     }
+                    // get the message if SLUG is not normal
                     else if (!slugText.contains("normal")) {
                         message += "metro (" + lineNode + ") : " + messageText + "\n";
                     }

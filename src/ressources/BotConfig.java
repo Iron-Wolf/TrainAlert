@@ -1,4 +1,4 @@
-package Ressources;
+package ressources;
 
 /**
  * Bot ressources

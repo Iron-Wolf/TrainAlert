@@ -1,5 +1,7 @@
-import Command.*;
-import Ressources.BotConfig;
+package main;
+
+import command.*;
+import ressources.BotConfig;
 import org.telegram.telegrambots.bots.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
