@@ -41,16 +41,15 @@ public class EveningCommand extends BotCommand {
 
             // RATP subway
             for (Integer subwayLine : BotConfig.SUBWAY_LIST) {
-                String fullRATPUrl = String.format(BotConfig.RATP_URLS, subwayLine.toString());
+                String fullRATPUrl = String.format(BotConfig.RATP_SUBWAY_URL, subwayLine.toString());
                 InputStream ratpContent =  APIWorker.getInstance().getXMLData(fullRATPUrl);
                 message +=  APIWorker.getInstance().getMessageSubway(ratpContent, false);
             }
 
             // message header
-            if (message.isEmpty())
-                messageBuilder.append(Emoji.WHITE_HEAVY_CHECK_MARK + "\nAucun problèmes");
-            else
-                messageBuilder.append(Emoji.WARNING_SIGN + "\n" + message);
+            messageBuilder.append((message.isEmpty()) ?
+                    Emoji.WHITE_HEAVY_CHECK_MARK + "\nAucun problèmes" :
+                    Emoji.WARNING_SIGN + "\n" + message);
 
             // send message
             SendMessage answer = ReplyMessage.getSendMessage(chat.getId(), messageBuilder.toString());

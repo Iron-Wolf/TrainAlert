@@ -43,8 +43,8 @@ public class ReplyMessage {
 
         List<KeyboardRow> keyboard = new ArrayList<KeyboardRow>();
         KeyboardRow firstRow = new KeyboardRow();
-        firstRow.add("/matin");
-        firstRow.add("/soir");
+        firstRow.add("/metro");
+        firstRow.add("/rer");
         KeyboardRow secondRow = new KeyboardRow();
         secondRow.add("/help");
 

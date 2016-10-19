@@ -22,6 +22,7 @@ public class TrainAlertHandler extends TelegramLongPollingCommandBot {
         register(new EveningCommand());
         register(new StartCommand());
         register(new SubwayCommand());
+        register(new RersCommand());
         HelpCommand helpCommand = new HelpCommand(this);
         register(helpCommand);
     }

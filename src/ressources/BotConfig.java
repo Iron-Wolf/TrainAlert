@@ -17,6 +17,8 @@ public class BotConfig {
     public static final Integer COLOMBES = 87381079;
     public static final Integer ST_LAZARD = 87384008;
 
-    public static final String RATP_URLS = "http://api-ratp.pierre-grimaud.fr/v2/traffic/metros/%s?format=xml";
+    public static final String RATP_SUBWAY_URL = "http://api-ratp.pierre-grimaud.fr/v2/traffic/metros/%s?format=xml";
     public static final Integer[] SUBWAY_LIST = {3, 4, 12};
+
+    public static final String RATP_RER_URL = "http://api-ratp.pierre-grimaud.fr/v2/traffic/rers/%s?format=xml";
 }

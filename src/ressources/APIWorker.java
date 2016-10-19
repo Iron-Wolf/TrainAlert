@@ -158,11 +158,11 @@ public class APIWorker {
                     String messageText = nodes.item(i).getChildNodes().item(3).getTextContent();
                     // get the message
                     if (allInfo) {
-                        message += "metro (" + lineNode + ") : " + messageText + "\n";
+                        message += "<b>Ligne " + lineNode + " :</b> " + messageText + "\n";
                     }
                     // get the message if SLUG is not normal
                     else if (!slugText.contains("normal")) {
-                        message += "metro (" + lineNode + ") : " + messageText + "\n";
+                        message += "<b>Ligne " + lineNode + "</b> : " + messageText + "\n";
                     }
                 }catch (Exception e){}
             }
