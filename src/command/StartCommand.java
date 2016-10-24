@@ -17,7 +17,7 @@ public class StartCommand extends BotCommand {
     private static final String LOGTAG = "START-COMMAND";
 
     public StartCommand() {
-        super("start", "Commence la conversation");
+        super("start", " - Commence la conversation");
     }
 
     @Override

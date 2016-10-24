@@ -25,7 +25,7 @@ public class SubwayCommand extends BotCommand{
     private static final Integer[] SUBWAY_LINE = {1,14} ;
 
     public SubwayCommand() {
-        super("Metro", "Usage : /metro [Ligne]...\nInfo sur n'importe quel métro");
+        super("Metro", " [Ligne] - Info sur n'importe quel métro");
     }
 
     @Override

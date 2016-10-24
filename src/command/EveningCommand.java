@@ -25,7 +25,7 @@ public class EveningCommand extends BotCommand {
     private static final String LOGTAG = "EVENING-COMMAND";
 
     public EveningCommand () {
-        super("Soir", "Horaires Paris > Colombes");
+        super("Soir", " - Horaires Paris > Colombes");
     }
 
     @Override

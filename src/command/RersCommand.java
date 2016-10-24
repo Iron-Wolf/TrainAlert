@@ -24,7 +24,7 @@ public class RersCommand extends BotCommand {
     private static final String[] RERS_LINE = {"a","b"};
 
     public RersCommand() {
-        super("Rer", "Usage : /rer [Ligne]...\nInfo sur n'importe quel RER");
+        super("Rer", " [Ligne] - Info sur les RER A et B");
     }
 
     @Override

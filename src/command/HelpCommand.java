@@ -1,5 +1,6 @@
 package command;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.User;
@@ -25,13 +26,21 @@ public class HelpCommand extends BotCommand {
     }
 
     @Override
-    public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
+    public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
         StringBuilder messageBuilder = new StringBuilder("<b>Commandes disponibles</b>\n");
 
-        for (BotCommand botCommand : commandRegistry.getRegisteredCommands()) {
-            // the HELP command is removed from the list
-            if (!botCommand.toString().contains("/help"))
-                messageBuilder.append(botCommand.toString()).append("\n");
+        if (arguments.length <= 0) {
+            // no argument given, return custom list of command
+            for (BotCommand botCommand : commandRegistry.getRegisteredCommands()) {
+                if (!botCommand.toString().contains("/help"))
+                    messageBuilder.append("/" + botCommand.getCommandIdentifier()
+                                        + botCommand.getDescription()
+                                        + "\n");
+            }
+
+        } else {
+            // return help of the given command
+
         }
 
         SendMessage answer = ReplyMessage.getSendMessage(chat.getId(), messageBuilder.toString());

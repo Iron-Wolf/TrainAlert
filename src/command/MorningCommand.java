@@ -25,7 +25,7 @@ public class MorningCommand extends BotCommand {
     private static final String LOGTAG = "MORNING-COMMAND";
 
     public MorningCommand () {
-        super("Matin", "Horaires Colombes > Paris");
+        super("Matin", " - Horaires Colombes > Paris");
     }
 
     @Override
