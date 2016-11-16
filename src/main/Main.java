@@ -29,8 +29,11 @@ public class Main {
 
             try {
                 // register long polling bot
-                telegramBotsApi.registerBot(new TrainAlertHandler());
+                TrainAlertHandler trainAlert = new TrainAlertHandler();
+                telegramBotsApi.registerBot(trainAlert);
                 System.out.println("Bot started");
+                // start monitoring
+                trainAlert.startMonitoring();
             } catch (TelegramApiException e) {
                 BotLogger.error(LOGTAG, e);
             }

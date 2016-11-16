@@ -10,6 +10,7 @@ import org.telegram.telegrambots.logging.BotLogger;
 import org.xml.sax.SAXException;
 import ressources.APIWorker;
 import ressources.BotConfig;
+import ressources.Emoji;
 import ressources.ReplyMessage;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -40,7 +41,7 @@ public class RersCommand extends BotCommand {
                     InputStream ratpContent =  APIWorker.getInstance().getXMLData(fullRATPUrl);
                     message +=  APIWorker.getInstance().getMessageSubway(ratpContent, false);
                 }
-                message = (message.isEmpty()) ? "Aucun problème" : message ;
+                message = (message.isEmpty()) ? "Aucun problème " + Emoji.WHITE_HEAVY_CHECK_MARK : message ;
             }
 
             // loop on each argument

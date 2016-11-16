@@ -11,6 +11,7 @@ public class BotConfig {
     public static final String BOT_TOKEN = "<bot token>";
     public static final String SNCF_USER = "<user token>";
     public static final String SNCF_PASSWD = "<passwd token>";
+    public static final Long MY_CHAT_ID = (long) 000000000;
 
     // API's url (will change behavior later...)
     public static final String SNCF_URL = "http://api.transilien.com/gare/%s/depart/%s/";

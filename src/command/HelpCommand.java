@@ -1,6 +1,5 @@
 package command;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.User;
@@ -15,7 +14,6 @@ import ressources.ReplyMessage;
  * List all command
  */
 public class HelpCommand extends BotCommand {
-
     private static final String LOGTAG = "HELP-COMMAND";
 
     private final ICommandRegistry commandRegistry;
