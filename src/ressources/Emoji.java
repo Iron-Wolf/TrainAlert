@@ -72,7 +72,6 @@ public enum Emoji {
 
     // Dingbats group
     BLACK_SCISSORS(null, '\u2702'),
-    WHITE_HEAVY_CHECK_MARK(null, '\u2705'),
     AIRPLANE(null, '\u2708'),
     ENVELOPE(null, '\u2709'),
     RAISED_FIST(null, '\u270A'),
@@ -81,6 +80,7 @@ public enum Emoji {
     PENCIL(null, '\u270F'),
     BLACK_NIB(null, '\u2712'),
     HEAVY_CHECK_MARK(null, '\u2714'),
+    WHITE_HEAVY_CHECK_MARK(null, '\u2705'),
     HEAVY_MULTIPLICATION_X(null, '\u2716'),
     SPARKLES(null, '\u2728'),
     EIGHT_SPOKED_ASTERISK(null, '\u2733'),

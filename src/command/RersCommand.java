@@ -66,21 +66,15 @@ public class RersCommand extends BotCommand {
             SendMessage answer = ReplyMessage.getSendMessage(chat.getId(), messageBuilder.toString());
             absSender.sendMessage(answer);
 
-        } catch (ParserConfigurationException e) {
-            BotLogger.error(LOGTAG, e);
-        } catch (SAXException e) {
-            BotLogger.error(LOGTAG, e);
-        } catch (IOException e) {
-            BotLogger.error(LOGTAG, e);
-        } catch (TelegramApiException e) {
+        } catch (ParserConfigurationException | SAXException | TelegramApiException | IOException e) {
             BotLogger.error(LOGTAG, e);
         }
 
     }
 
-    public static boolean stringContainsItemFromList(String inputString, String[] items) {
-        for(int i =0; i < items.length; i++) {
-            if(inputString.contains(items[i]))
+    private static boolean stringContainsItemFromList(String inputString, String[] items) {
+        for (String item : items) {
+            if (inputString.contains(item))
                 return true;
         }
         return false;

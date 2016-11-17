@@ -69,13 +69,7 @@ public class SubwayCommand extends BotCommand{
             SendMessage answer = ReplyMessage.getSendMessage(chat.getId(), messageBuilder.toString());
             absSender.sendMessage(answer);
 
-        } catch (ParserConfigurationException e) {
-            BotLogger.error(LOGTAG, e);
-        } catch (SAXException e) {
-            BotLogger.error(LOGTAG, e);
-        } catch (IOException e){
-            BotLogger.error(LOGTAG, e);
-        } catch (TelegramApiException e) {
+        } catch (ParserConfigurationException | SAXException | TelegramApiException | IOException e) {
             BotLogger.error(LOGTAG, e);
         }
 

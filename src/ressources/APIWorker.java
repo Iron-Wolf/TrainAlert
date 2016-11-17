@@ -70,12 +70,6 @@ public class APIWorker {
             String encoding = b.encodeAsString((userName + ":" + password).getBytes());
             connection.setRequestProperty("Authorization", "Basic " + encoding);
         }
-        /* // debug //
-          BufferedReader in = new BufferedReader (new InputStreamReader(content));
-          String line;
-          while ((line = in.readLine()) != null) {
-            System.out.println(line);
-          }*/
         return connection.getInputStream();
     }
 
@@ -114,7 +108,7 @@ public class APIWorker {
                     //String etatNode = nodes.item(i).getChildNodes().item(8).getNodeName();
                     String etatText = nodes.item(i).getChildNodes().item(8).getTextContent();
                     String dateText = nodes.item(i).getChildNodes().item(0).getTextContent();
-                    message += "Ligne J (" + dateText + ") : " + etatText + "\n";
+                    message += "<b>Ligne J</b> (" + dateText + ") : " + etatText + "\n";
                 }catch (Exception e){}
             }
         }
