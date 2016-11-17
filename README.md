@@ -3,10 +3,11 @@
 [![Build Status](https://travis-ci.org/Iron-Wolf/TrainAlert.svg?branch=master)](https://travis-ci.org/Iron-Wolf/TrainAlert)
 [![Dependencies](https://img.shields.io/librariesio/github/Iron-Wolf/TrainAlert.svg)](https://libraries.io/github/Iron-Wolf/TrainAlert)
 
-Custom telegram bot build with [Java API](https://github.com/rubenlagus/TelegramBots).
+Custom telegram bot build with [Java API](https://github.com/rubenlagus/TelegramBots).  
+Don't hesitate to [chat with him](https://telegram.me/trainalert_bot) and send me your feedback.
 
 ## Goal
-Mainly for test purpose and for a personal use in the first place. 
+Mainly for test purpose and for a personal use in the first place.  
 Maybe upgrade to a better bot in the future.
 
 ## Technology used
