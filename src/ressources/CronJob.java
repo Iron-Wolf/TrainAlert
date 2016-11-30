@@ -45,7 +45,11 @@ public class CronJob extends TelegramLongPollingBot implements Job {
             // SNCF transilien
             String fullSNCFUrl = String.format(BotConfig.SNCF_URL, BotConfig.COLOMBES, BotConfig.ST_LAZARD);
             InputStream content = APIWorker.getInstance().getXMLData(fullSNCFUrl, BotConfig.SNCF_USER, BotConfig.SNCF_PASSWD);
-            message =  APIWorker.getInstance().getMessageJLine(content);
+            message = "Départ Colombes -> " + APIWorker.getInstance().getMessageJLine(content);
+
+            fullSNCFUrl = String.format(BotConfig.SNCF_URL, BotConfig.ST_LAZARD, BotConfig.COLOMBES);
+            content = APIWorker.getInstance().getXMLData(fullSNCFUrl, BotConfig.SNCF_USER, BotConfig.SNCF_PASSWD);
+            message += "Départ St Lazard -> " + APIWorker.getInstance().getMessageJLine(content);
 
             // RATP subway
             for (Integer subwayLine : BotConfig.SUBWAY_LIST) {
