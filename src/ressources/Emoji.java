@@ -24,6 +24,7 @@ public enum Emoji {
     SMILING_FACE_WITH_HEART_SHAPED_EYES('\uD83D', '\uDE0D'),
     SMIRKING_FACE('\uD83D', '\uDE0F'),
     UNAMUSED_FACE('\uD83D', '\uDE12'),
+    FROWNING_FACE(null, '\u2639'),
     FACE_WITH_COLD_SWEAT('\uD83D', '\uDE13'),
     PENSIVE_FACE('\uD83D', '\uDE14'),
     CONFOUNDED_FACE('\uD83D', '\uDE16'),

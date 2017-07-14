@@ -9,11 +9,9 @@ import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
-import org.xml.sax.SAXException;
 import ressources.Emoji;
 import ressources.ReplyMessage;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -25,7 +23,7 @@ public class SubwayCommand extends BotCommand{
     private static final Integer[] SUBWAY_LINE = {1,14} ;
 
     public SubwayCommand() {
-        super("Metro", " [Ligne] - Info sur n'importe quel métro");
+        super("Metro", " [Ligne] - Info sur les métros");
     }
 
     @Override
@@ -69,7 +67,7 @@ public class SubwayCommand extends BotCommand{
             SendMessage answer = ReplyMessage.getSendMessage(chat.getId(), messageBuilder.toString());
             absSender.sendMessage(answer);
 
-        } catch (ParserConfigurationException | SAXException | TelegramApiException | IOException e) {
+        } catch (TelegramApiException | IOException e) {
             BotLogger.error(LOGTAG, e);
         }
 

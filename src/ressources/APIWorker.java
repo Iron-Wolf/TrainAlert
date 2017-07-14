@@ -1,18 +1,17 @@
 package ressources;
 
 import org.apache.commons.codec.binary.Base64;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.Document;
+import org.jdom2.Element;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Handle all necesary stuff related to API call,
@@ -78,39 +77,35 @@ public class APIWorker {
      * The InputStream must come from the SNCF real time API.
      * @param content {@link java.io.InputStream InputStream} containing XML data
      * @return The String containing message
-     * @throws ParserConfigurationException If XML is malformed
-     * @throws SAXException If XML is malformed
      * @throws IOException If problem occur on connection
      */
-    public String getMessageJLine(InputStream content) throws ParserConfigurationException,SAXException,IOException {
+    public String getMessageJLine(InputStream content) throws IOException {
         String message = "";
 
-        // use BuilderFactory to parse XML
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
+        // use SAXBuilder to parse XML
+        SAXBuilder builder = new SAXBuilder();
 
-        // create a new document from input stream
-        Document doc = builder.parse(content);
-        Element element = doc.getDocumentElement();
-        NodeList nodes = element.getChildNodes();
+        try {
+            // create a new document from input stream
+            Document doc = builder.build(content);
+            Element root = doc.getRootElement();
+            List trains = root.getChildren();
+            Iterator i = trains.iterator();
+            while (i.hasNext()) {
+                Element train = (Element) i.next();
 
-        for (int i = 0; i < nodes.getLength(); i++) {
-            // loop only on TRAIN node
-            if (nodes.item(i).getNodeName().equals("train")) {
-                /*
-                 0 : date
-                 2 : num
-                 4 : miss
-                 6 : term
-                 8 : etat (null if train OK)
-                */
-                try {
-                    //String etatNode = nodes.item(i).getChildNodes().item(8).getNodeName();
-                    String etatText = nodes.item(i).getChildNodes().item(8).getTextContent();
-                    String dateText = nodes.item(i).getChildNodes().item(0).getTextContent();
-                    message += "<b>Ligne J</b> (" + dateText + ") : " + etatText + "\n";
-                }catch (Exception e){}
+                // loop on each element and retrieve the node if he exists
+                List<Element> elements = train.getChildren();
+                for (Element element : elements) {
+                    if (element.getName().equals("etat")){
+                        String etatText = train.getChild("etat").getText();
+                        String dateText = train.getChild("date").getText();
+                        message += "<b>Ligne J</b> (" + dateText + ") : " + etatText + "\n";
+                    }
+                }
             }
+        } catch (JDOMException e) {
+            message += "Oups " + Emoji.FROWNING_FACE + "\n";
         }
         return message;
     }
@@ -122,45 +117,34 @@ public class APIWorker {
      * @param allInfo <b>true</b> return the message.
      *                <b>false</b> return message if subway has trouble
      * @return Message to the user
-     * @throws ParserConfigurationException If XML is malformed
-     * @throws SAXException If XML is malformed
      * @throws IOException If problem occur on connection
      */
-    public String getMessageSubway(InputStream content, boolean allInfo) throws ParserConfigurationException,SAXException,IOException {
+    public String getMessageSubway(InputStream content, boolean allInfo) throws IOException {
         String message = "";
 
-        // use BuilderFactory to parse XML
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
+        // use SAXBuilder to parse XML
+        SAXBuilder builder = new SAXBuilder();
 
-        // create a new document from input stream
-        Document doc = builder.parse(content);
-        Element element = doc.getDocumentElement();
-        NodeList nodes = element.getChildNodes();
+        try {
+            // create a new document from input stream
+            Document doc = builder.build(content);
+            Element root = doc.getRootElement();
+            String lineText = root.getChild("result").getChild("line").getText();
+            String slugText = root.getChild("result").getChild("slug").getText();
+            String messageText = root.getChild("result").getChild("message").getText();
 
-        for (int i = 0; i < nodes.getLength(); i++) {
-            if (nodes.item(i).getNodeName().equals("response")) {
-                /*
-                 0 : line
-                 1 : slug
-                 2 : title
-                 3 : message
-                */
-                try {
-                    String lineNode = nodes.item(i).getChildNodes().item(0).getTextContent();
-                    String slugText = nodes.item(i).getChildNodes().item(1).getTextContent();
-                    String messageText = nodes.item(i).getChildNodes().item(3).getTextContent();
-                    // get the message
-                    if (allInfo) {
-                        message += "<b>Ligne " + lineNode + " :</b> " + messageText + "\n";
-                    }
-                    // get the message if SLUG is not normal
-                    else if (!slugText.contains("normal")) {
-                        message += "<b>Ligne " + lineNode + "</b> : " + messageText + "\n";
-                    }
-                }catch (Exception e){}
+            // check the flag and get the message if TRUE
+            if (allInfo) {
+                message += "<b>Ligne " + lineText + " :</b> " + messageText + "\n";
             }
+            // get the message if SLUG is not normal
+            else if (!slugText.contains("normal")) {
+                message += "<b>Ligne " + lineText + "</b> : " + messageText + "\n";
+            }
+        } catch (JDOMException e) {
+            message += "Oups " + Emoji.FROWNING_FACE + "\n";
         }
+
         return message;
     }
 }

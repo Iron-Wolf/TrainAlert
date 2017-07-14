@@ -8,9 +8,7 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -77,7 +75,7 @@ public class CronJob extends TelegramLongPollingBot implements Job {
             if (sendMessage)
                 sendAlerts(messageBuilder);
 
-        } catch (ParserConfigurationException | SAXException | IOException e) {
+        } catch (IOException e) {
             BotLogger.error(LOGTAG, e);
         }
     }

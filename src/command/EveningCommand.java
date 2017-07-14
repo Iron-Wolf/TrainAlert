@@ -10,10 +10,8 @@ import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
-import org.xml.sax.SAXException;
 import ressources.ReplyMessage;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -55,7 +53,7 @@ public class EveningCommand extends BotCommand {
             SendMessage answer = ReplyMessage.getSendMessage(chat.getId(), messageBuilder.toString());
             absSender.sendMessage(answer);
 
-        } catch (ParserConfigurationException | SAXException | TelegramApiException | IOException e) {
+        } catch (TelegramApiException | IOException e) {
             BotLogger.error(LOGTAG, e);
         }
     }

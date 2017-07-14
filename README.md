@@ -14,4 +14,4 @@ Maybe upgrade to a better bot in the future.
 ## Technology used
 &nbsp;&nbsp;&nbsp;&nbsp;[![SNCF API real time](https://img.shields.io/badge/SNCF-0.2-blue.svg)](https://ressources.data.sncf.com/explore/dataset/api-temps-reel-transilien/) Official SNCF real time API (used for Transilien)
 
-&nbsp;&nbsp;&nbsp;&nbsp;[![RATP API](https://img.shields.io/badge/RATP-2.0-blue.svg)](https://github.com/pgrimaud/horaires-ratp-api) Unofficial RATP API (used for subway) - [official here](http://wap.ratp.fr)
+&nbsp;&nbsp;&nbsp;&nbsp;[![RATP API](https://img.shields.io/badge/RATP-2.0-blue.svg)](https://github.com/pgrimaud/horaires-ratp-api) Unofficial RATP API (used for rers, metros, tramways) - [official here](http://wap.ratp.fr)
