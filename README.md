@@ -1,7 +1,8 @@
 # TrainAlert
 [![Build Status](https://travis-ci.org/Iron-Wolf/TrainAlert.svg?branch=master)](https://travis-ci.org/Iron-Wolf/TrainAlert)
-[![Dependencies](https://img.shields.io/librariesio/github/Iron-Wolf/TrainAlert.svg)](https://libraries.io/github/Iron-Wolf/TrainAlert)  
+[![CodeFactor](https://www.codefactor.io/repository/github/iron-wolf/trainalert/badge)](https://www.codefactor.io/repository/github/iron-wolf/trainalert)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9a413045ce64b5f9b9e2c4fec64fb7d)](https://www.codacy.com/manual/Iron-Wolf/TrainAlert?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Iron-Wolf/TrainAlert&amp;utm_campaign=Badge_Grade)
+![](https://img.shields.io/github/languages/code-size/Iron-Wolf/TrainAlert) 
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Iron-Wolf/TrainAlert.svg)](http://isitmaintained.com/project/Iron-Wolf/TrainAlert "Average time to resolve an issue")
 
 Custom telegram bot build with [Java API](https://github.com/rubenlagus/TelegramBots).  
