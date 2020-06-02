@@ -42,5 +42,4 @@ copyright/
 
 #File System specific files
 .DS_STORE
-README.md
 MANIFEST.MF
